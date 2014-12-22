@@ -1,0 +1,43 @@
+// ------------------------------------------------------------------------------------------------
+// CANTOS ARREDONDADOS
+// ------------------------------------------------------------------------------------------------
+
+@mixin canto-arredondado( $valor1, $valor2:null, $valor3:null, $valor4:null ) {
+  -webkit-border-radius: $valor1 $valor2 $valor3 $valor4;
+     -moz-border-radius: $valor1 $valor2 $valor3 $valor4;
+      -ms-border-radius: $valor1 $valor2 $valor3 $valor4;
+          border-radius: $valor1 $valor2 $valor3 $valor4;
+}
+
+
+// ------------------------------------------------------------------------------------------------
+// CANTOS ARREDONDADOS
+// ------------------------------------------------------------------------------------------------
+
+@mixin gradiente( $cor1, $cor2 ) {
+	background: $cor1; /* Old browsers */
+	background: -moz-linear-gradient(top,  $cor1 0%, $cor2 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$cor1), color-stop(99%,$cor2)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  $cor1 0%,$cor2 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  $cor1 0%,$cor2 99%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  $cor1 0%,$cor2 99%); /* IE10+ */
+	background: linear-gradient(to bottom,  $cor1 0%,$cor2 99%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$cor1', endColorstr='$cor2',GradientType=0 ); /* IE6-9 */
+}
+
+
+// ------------------------------------------------------------------------------------------------
+// OPACIDADE
+// ------------------------------------------------------------------------------------------------
+
+@mixin opacidade( $percentual ) {
+	opacity: $percentual/100;
+	-moz-opacity: $percentual/100;
+	-khtml-opacity: $percentual/100;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=$percentual)";
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=$percentual);
+	filter:alpha(opacity=$percentual);
+}
+
+
+// ------------------------------------------------------------------------------------------------
