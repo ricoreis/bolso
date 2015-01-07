@@ -35,7 +35,8 @@
 	/* ------------------------------------------------------------------ */
 
 	//$sql = "SELECT * from bolso WHERE descricao LIKE '%".$descricao."%' AND dia BETWEEN '".$dia1."' AND '".$dia2."'";
-	$sql = "SELECT * from bolso WHERE categoria LIKE '%".$categoria."%' ";
+	//$sql = "SELECT * from bolso WHERE categoria LIKE '%".$categoria."%' ";
+	$sql = "SELECT * from bolso WHERE descricao LIKE '%".$descricao."%' ";
 
 	$result = mysqli_query($link,$sql);
 
