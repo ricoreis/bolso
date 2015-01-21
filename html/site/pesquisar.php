@@ -4,19 +4,6 @@
 
 	/* ------------------------------------------------------------------ */
 
-	//echo $_POST["dia1"]." >>> ".$_POST["dia2"]."<br><br>";
-
-	function ConverteDia( $dia )
-	{
-		if( !empty($dia) )
-		{
-			$converte = $dia;
-			$converte = explode("/",$converte);
-			$converte = $converte[2]."-".$converte[1]."-".$converte[0];
-			return $converte;
-		}
-	}
-
 	function ConverteValor( $valor )
 	{
 		$converte = number_format($valor,2,",",".");
@@ -25,18 +12,38 @@
 
 	/* ------------------------------------------------------------------ */
 
+	$hoje 		= date("Y-m-d");
 	$descricao	= utf8_decode( $_POST["descricao_p"] );
 	$categoria	= utf8_decode( $_POST["categoria_p"] );
-	$dia1		= ConverteDia( $_POST["dia1"] );
-	$dia2		= ConverteDia( $_POST["dia2"] );
+	$tipo		= $_POST["tipo_p"];
+	$periodo	= $_POST["periodo_p"];
+	$dia1		= $_POST["dia1"];
+	$dia2		= $_POST["dia2"];
 
-	//echo $descricao." >>> ".$categoria." >>> ".$dia1." >>> ".$dia2;
+	//echo $descricao." > ".$categoria." > ".$periodo." dias > ".$tipo." > ".$dia_i." > ".$dia_f;
 
 	/* ------------------------------------------------------------------ */
 
-	//$sql = "SELECT * from bolso WHERE descricao LIKE '%".$descricao."%' AND dia BETWEEN '".$dia1."' AND '".$dia2."'";
-	//$sql = "SELECT * from bolso WHERE categoria LIKE '%".$categoria."%' ";
-	$sql = "SELECT * from bolso WHERE descricao LIKE '%".$descricao."%' ";
+	$sql =	"SELECT * from bolso
+
+			WHERE ( descricao LIKE '%".$descricao."%' OR descricao IS NULL )";
+
+	if( $tipo == "r" )
+	{
+		$sql .= "AND ( valor > 0 )";
+	}
+	elseif ( $tipo == "d" )
+	{
+		$sql .= "AND ( valor < 0 )";
+	}
+
+	$sql .= "AND ( categoria LIKE '%".$categoria."%' OR categoria IS NULL )
+
+			AND dia BETWEEN DATE_SUB( NOW(), INTERVAL ".$periodo." DAY ) AND NOW()
+
+			ORDER BY dia DESC ";
+
+	/* ------------------------------------------------------------------ */
 
 	$result = mysqli_query($link,$sql);
 
@@ -46,7 +53,7 @@
 
 	$total = 0;
 
-	echo "<table border='0' cellpadding='0' cellspacing='0'>";
+	echo "<table border='0' cellpadding='2' cellspacing='2'>";
 
 		echo "<thead>";
 			echo "<th>Descrição</th>";

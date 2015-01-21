@@ -286,7 +286,7 @@
 					$sql = "SELECT * from receita ORDER BY categoria";
 					$result = mysqli_query($link,$sql);
 					echo "<select name='categoria_r'>";
-					echo "<option value='0'>Selecione categoria</option>";
+					echo "<option value=''>Selecione categoria</option>";
 					while ( $row = mysqli_fetch_array($result) ) {
 						echo "<option value='" . utf8_encode($row["categoria"]) . "'>" . utf8_encode($row["categoria"]) . "</option>";
 					}
@@ -333,7 +333,7 @@
 					$sql = "SELECT * from despesas ORDER BY categoria";
 					$result = mysqli_query($link,$sql);
 					echo "<select name='categoria'>";
-					echo "<option value='0'>Selecione categoria</option>";
+					echo "<option value=''>Selecione categoria</option>";
 					while ( $row = mysqli_fetch_array($result) ) {
 						echo "<option value='" . utf8_encode($row["categoria"]) . "'>" . utf8_encode($row["categoria"]) . "</option>";
 					}
@@ -352,7 +352,7 @@
 					$sql = "SELECT * from cartoes";
 					$result = mysqli_query($link,$sql);
 					echo "<select name='cartao' id='cartao' class='input100'>";
-					echo "<option value='0'>Sem cartão</option>";
+					echo "<option value=''>Sem cartão</option>";
 					while ( $row = mysqli_fetch_array($result) ) {
 						echo "<option value='" . utf8_encode($row["cartao"]) . "'>Cartão " . utf8_encode($row["cartao"]) . "</option>";
 					}
@@ -387,7 +387,7 @@
 					$sql = "SELECT * from cartoes";
 					$result = mysqli_query($link,$sql);
 					echo "<select name='cartao_dc' id='cartao_dc'>";
-					echo "<option value='0'>Selecione cartão</option>";
+					echo "<option value=''>Selecione cartão</option>";
 					while ( $row = mysqli_fetch_array($result) ) {
 						echo "<option value='" . utf8_encode($row["cartao"]) . "'> " . utf8_encode($row["cartao"]) . "</option>";
 					}
@@ -429,7 +429,7 @@
 						$sql = "SELECT * from despesas ORDER BY categoria";
 						$result = mysqli_query($link,$sql);
 						echo "<select name='categoria_dc1'>";
-						echo "<option value='0'>Selecione categoria</option>";
+						echo "<option value=''>Selecione categoria</option>";
 						while ( $row = mysqli_fetch_array($result) ) {
 							echo "<option value='" . utf8_encode($row["categoria"]) . "'>" . utf8_encode($row["categoria"]) . "</option>";
 						}
@@ -483,18 +483,36 @@
 				</div>
 
 				<div style="width: 100%; float: left;">
+					<select name="tipo_p">
+						<option value="dr">Despesa e receita</option>
+						<option value="d">Despesa</option>
+						<option value="r">Receita</option>
+					</select>
+				</div>
+
+				<div style="width: 100%; float: left;">
 				<?php
 
 					$sql = "SELECT * from despesas ORDER BY categoria";
 					$result = mysqli_query($link,$sql);
 					echo "<select name='categoria_p'>";
-					echo "<option value='0'>Selecione categoria</option>";
+					echo "<option value=''>Categoria</option>";
 					while ( $row = mysqli_fetch_array($result) ) {
 					    echo "<option value='" . utf8_encode($row["categoria"]) . "'>" . utf8_encode($row["categoria"]) . "</option>";
 					}
 					echo "</select>";
 
 				?>
+				</div>
+
+				<div style="width: 100%; float: left;">
+					<select name="periodo_p">
+						<option value="7">Últimos 7 dias</option>
+						<option value="15">Últimos 15 dias</option>
+						<option value="30">Últimos 30 dias</option>
+						<option value="60">Últimos 60 dias</option>
+						<option value="90">Últimos 90 dias</option>
+					</select>
 				</div>
 
 				<div style="width: 49%; float: left;">
