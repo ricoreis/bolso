@@ -60,6 +60,7 @@
 			echo "<th align='right'>R$</th>";
 			echo "<th>Categoria</th>";
 			echo "<th>Data</th>";
+			echo "<th></th>";
 		echo "</thead>";
 
 	while ( $row = mysqli_fetch_array($result) ) {
@@ -76,6 +77,7 @@
 			echo "<td align='right'>" . ConverteValor($row["valor"]) . "</td>";
 			echo "<td>" . utf8_encode($row["categoria"]) . "</td>";
 			echo "<td>" . $dia_d ."/". $dia_m ."/". $dia_y. "</td>";
+			echo "<td><a href='javascript:Teste()' id='item-". ($row["id"]) ."'>&nbsp;x&nbsp;</a></td>";
 		echo "</tr>";
 
 	}
@@ -83,6 +85,7 @@
 		echo "<tfoot>";
 			echo "<th>Total</th>";
 			echo "<th align='right'>" . ConverteValor($total) . "</th>";
+			echo "<th></th>";
 			echo "<th></th>";
 			echo "<th></th>";
 		echo "</tfoot>";
