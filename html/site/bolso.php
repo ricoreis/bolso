@@ -513,6 +513,8 @@
 						<option value="60">Últimos 60 dias</option>
 						<option value="90">Últimos 90 dias</option>
 						<option value="365">Último ano</option>
+						<option value="2015">2015</option>
+						<option value="2014">2014</option>
 					</select>
 				</div>
 

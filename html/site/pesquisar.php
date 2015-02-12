@@ -20,7 +20,7 @@
 	$dia1		= $_POST["dia1"];
 	$dia2		= $_POST["dia2"];
 
-	//echo $descricao." > ".$categoria." > ".$periodo." dias > ".$tipo." > ".$dia_i." > ".$dia_f;
+	//echo $descricao." > ".$categoria." > ".$periodo." > ".$tipo." > ".$dia1." > ".$dia2;
 
 	/* ------------------------------------------------------------------ */
 
@@ -37,11 +37,18 @@
 		$sql .= "AND ( valor < 0 )";
 	}
 
-	$sql .= "AND ( categoria LIKE '%".$categoria."%' OR categoria IS NULL )
+	$sql .= "AND ( categoria LIKE '%".$categoria."%' OR categoria IS NULL )";
 
-			AND dia BETWEEN DATE_SUB( NOW(), INTERVAL ".$periodo." DAY ) AND NOW()
+	if( $periodo > 365 )
+	{
+		$sql .= "AND dia BETWEEN '".$periodo."-01-01' AND '".$periodo."-12-31' ";
+	}
+	else
+	{
+		$sql .= "AND dia BETWEEN DATE_SUB( NOW(), INTERVAL ".$periodo." DAY ) AND NOW()";
+	}
 
-			ORDER BY dia DESC ";
+	$sql .= "ORDER BY dia DESC";
 
 	/* ------------------------------------------------------------------ */
 
